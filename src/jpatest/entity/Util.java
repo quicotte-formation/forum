@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +24,13 @@ import javax.persistence.TemporalType;
 @Entity
 public class Util implements Serializable {
 
+    public enum UtilType{
+        
+        NORMAL,
+        MODERATEUR,
+        ADMIN
+    }
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,7 +45,11 @@ public class Util implements Serializable {
     @Temporal(TemporalType.TIME)
     private Date dateCreation;
 
+    @Enumerated(EnumType.STRING)
+    private UtilType utilType;
+    
     public Long getId() {
+        
         return id;
     }
 
